@@ -1,0 +1,71 @@
+body{
+height: 100%;
+width: 100%;
+background-color: grey;
+
+}
+#type{
+width: 100px;
+background-color: #333231;
+color: white;
+}
+.navbar-brand{
+font-family: yellowtail;
+font-style:italic;
+font-weight:bold;
+font-size: 30px;
+
+}
+.post{
+width: 80%;
+}
+.panel{
+margin-bottom: -1px;
+}
+img{
+width: 200px;
+height: 200px;
+padding: 10px;
+float: left;
+}
+body {
+min-height: 75rem;
+padding-top: 4.5rem;
+}
+.fixed-top{
+position: fixed;
+}
+.mid{
+position: relative;
+top: 50px;
+left: 10px;
+}
+.bg{
+background-color: grey;
+opacity: 0.5;
+}
+#button-search{
+background-color: #198754;
+color: black;
+}
+#form-search{
+margin-top:10px;
+width:50%;
+}
+@media (max-width:568px){
+#form-search{
+width: 90%;
+}
+}
+.button-close{
+padding : 20px;
+background-color: white;
+}
+#close{
+ height: 12px;
+ width: 12px;
+ position: absolute !important;
+ top: 2px;
+ right: 5px;
+ cursor: pointer;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width:device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-grid.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/css.css">
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+/* Tải trang top headline  */
+document.addEventListener('DOMContentLoaded',function(){
+loadPage();
+});
+
+/* Hàm tải trang top headline */
+function loadPage(){
+  fetch('https://gnews.io/api/v4/top-headlines?token=12ad6fb77d77e714a453434f732957de&lang=en')
+  .then(response => response.json())
+  .then(data => {
+	let html = "";
+    for( let val in data.articles){ // Vòng lặp chuyển dữ liệu response vào html
+    html += "<div class = 'post'>";
+    html += "<div class='panel panel-default'>";
+	html += "<img src=" +data.articles[val].image + ">";
+    html += "<h3><a target='_blank' href='" + data.articles[val].source.url +"'>" + data.articles[val].title + "</a></h3><div class='panel-body'><p>" + data.articles[val].publishedAt + "</p><p>" + data.articles[val].description + "</p>";
+    html += "</div></div></div>";
+    };
+  document.getElementById('demo').innerHTML = html;
+  });	
+}; 
+
+/* Hàm tìm kiếm */
+function loadDoc() {
+  let val = document.getElementById("search").value;
+  let encodedUrl = encodeURIComponent(val);  // Mã hóa url
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {    // hàm tải kết quả response vào html 
+    let dataSearch = JSON.parse(this.responseText);
+    let resultSearch = "";
+    for( let va in dataSearch.articles){
+      resultSearch += "<div class = 'post'>";
+	  resultSearch += "<div class='panel panel-default'>";
+	  resultSearch += "<img src=" + dataSearch.articles[va].image + ">";
+      resultSearch += "<h3><a target='_blank' href='" + dataSearch.articles[va].source.url +"'>" + dataSearch.articles[va].title + "</a></h3><div class='panel-body'><p>" + dataSearch.articles[va].publishedAt + "</p><p>" + dataSearch.articles[va].description + "</p>";
+      resultSearch += "</div></div></div>";
+    };
+  document.getElementById("demo").innerHTML = resultSearch;
+  }; 
+  let url = "https://gnews.io/api/v4/search?token=12ad6fb77d77e714a453434f732957de&lang=en&country=us&from=2020-11-13T08:31:22Z&to=2022-01-13T08:31:22Z&max=10&q=" + encodedUrl;
+  xhttp.open("GET", url);
+  xhttp.send();
+};
+
+
+/* Hiệu ứng jquery cho ô tìm kiếm  */
+$(document).ready(function(){
+  $("#search").on('focus',function(){
+   $(".d-flex").addClass("mid button-close");
+   $("main").addClass("bg");
+  });
+  
+  $("#close").on('click',function(){
+   $(".d-flex").delay(5000).removeClass("mid button-close");
+   $("main").delay(5000).removeClass("bg");
+  }); 
+  
+  /* Tải lại trang khi click home */
+  $("#home").on('click',function(){
+    loadPage();
+  });
+}); 
+
+</script>
+</head>
+<style>
+
+</style>
+<body >
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-4"> <!-- Nav bar -->
+  <div class="container-fluid">
+    <a class="navbar-brand"  >NEWS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a id="home" class="nav-link active" aria-current="page" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Link</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li> 
+      </ul>
+      <div id="form-search" class="d-flex"> <!-- Form search -->
+		<span id="close">X</span>
+        <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search">
+        <button id="button-search" class="btn btn-outline-success" type="submit" onclick="loadDoc()" >Search</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<main id="main" class="container"> <!-- Main -->
+  <div class="bg-light p-5 rounded">
+	<p id="demo"></p>
+  </div>
+</main>
+  </body>
+</html>

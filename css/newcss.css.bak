@@ -1,0 +1,127 @@
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	word-wrap: break-word;
+	word-break: keep-all;
+	font-size: 100%;
+}
+*{
+	box-sizing: border-box;
+}
+a{
+	color: blue;
+}
+li a{
+	text-decoration: none;
+	color: white;
+}
+#menu{
+	background-color:grey; 
+	color: white;
+}
+#content-1{
+	padding-left: 30px;
+}
+hr{
+	visibility: hidden;
+}
+#content-2{
+	padding: 20px 0px 20px 30px;
+}
+ul{
+	padding: 10px 30px;
+	margin: 0px;
+}
+li{
+	list-style-type: none;
+	float: left;
+	padding: 5px 20px 5px 0px;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+#colum1{
+	padding:10px 30px;
+}
+img{
+	width:100%;
+	border-radius: 4px;
+}
+#newyork, #paris{
+	padding-top: 30px;
+}
+#colum2{
+	padding: 10px 30px;
+}
+[class*="col-"] {
+  width: 100%;
+}
+@media (max-width: 768px) {
+li a{
+	font-size: 3.3vw;
+}
+.left{
+	width: 40%;
+	float: left;
+}
+.right{
+	width: 60%;
+	float: right;
+}
+#brand{
+width: 50%;
+}
+#browse{
+width: 50%;
+}
+#signup{
+width: 33.333%;
+}
+#signin{
+width: 33.333%;
+}
+#help{
+width: 33.333%;
+}
+li{
+	list-style-type: none;
+	float: left;
+	padding: 5px 0px;
+}
+}
+@media (min-width: 768px) {
+	hr{
+	visibility: visible;
+	}
+@media (min-width: 992px) {
+	#menu{
+	background-color:white; 
+	color: black;
+	}
+	li a{
+		color: black;
+	}
+	#banner{
+	color: white;
+	width:auto;
+	height: 400px;
+	background-size: 100% 100%;
+	background-image:url(" https://s3.amazonaws.com/codecademy-content/courses/ltp/img/lodging.png");
+	background-repeat: no-repeat;
+	}
+	#listimage{
+	background-color: #ededed;
+	}
+	#content-1{
+		position: absolute;
+		top: 150px;
+	}
+	hr{
+	display: none;
+	}
+	#footerlist{
+	background-color: #f7f7f7;
+	}
+}
